@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+<body>
+    
+    <div class="login_create">
+        <div class="div_label">
+            <h2 class="label_login">Registro</h2>
+        </div>
+        
+        <form action="user.php" method="post" onsubmit="return validar()">
+           <input type="text" class="txt" name="Nome" id="nome" placeholder="Nome">
+           <input type="password" class="txtpass" name="Password" id="password" placeholder="Palavra passe">
+           <input type="password" class="txtpass2" name="Password2" id="password2" placeholder="Palavra passe">
+           <button type="submit" name="acao" value="CriarConta" class="CRIAR">Criar Conta</button>
+           
+        </form>
+        <a href="user.html" class="link_voltar">Voltar</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const erro = urlParams.get('erro');
+        const erro2 = urlParams.get('erro2');
+        const mensagem = urlParams.get('mensagem');
+        if (erro) {
+            alert("Informações incorretas. Tente novamente.");
+        }
+        if(erro2){
+            alert("Este utilizador ja existe");
+        }
+        if(mensagem){
+            alert("Conta criada com sucesso");
+        }
+        function validar(){
+            
+            var nome = document.getElementById("nome").value;
+            var pass = document.getElementById("password").value;
+            var pass2 = document.getElementById("password2").value;
+
+            var passnum = pass.length;
+            if(nome === "" || pass === "" || pass2 === ""){
+                alert("Preencha todos os campos")
+                return false;
+            }
+            if(passnum < 4){
+                alert("Introduza uma palavra passe com pelo menos 4 carcteres")
+                return false
+            }
+            if(passnum > 20){
+                alert("Introduza uma palvra passe com menos de 20 caracteres")
+                return false;
+            }
+            if(pass2 != pass){
+                alert('comfirme a palavra passe')
+                return false;
+            }
+            
+            
+            return true;
+        }
+    </script>
+</body>
+</html>
